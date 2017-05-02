@@ -1,6 +1,7 @@
 import React from 'react'
 import CharacterSelector from '../components/CharacterSelector'
 import CharacterDetail from '../components/CharacterDetail'
+import CharacterSelectorFilter from '../components/CharacterSelectorFilter'
 
 class CharactersContainer extends React.Component {
 
@@ -8,8 +9,29 @@ class CharactersContainer extends React.Component {
     super(props)
     this.state = {
       characters: [],
-      selectedCharacter: null
+      // filteredCharacters: [],
+      selectedCharacter: null,
+      filteredCategory: ''
     }
+  }
+
+  setFilteredCategory(house) {
+    this.setState({ filteredCategory: house })
+  }
+
+  createCharacterList(data) {
+    if (this.state.filteredCategory === '') {
+      return this.state.characters
+    }
+
+    return data.filter((character) => {
+      return (character.house === this.state.filteredCategory)
+    })
+
+    // const filteredCharacters = this.state.characters.filter((character) => {
+    //   return (character.house === this.state.filteredCategory)
+    // })
+    // this.setState({ filteredCharacters: filteredCharacters })
   }
 
   componentDidMount() {
@@ -21,7 +43,7 @@ class CharactersContainer extends React.Component {
       if (request.status === 200) {
         const jsonString = request.responseText
         const data = JSON.parse(jsonString)
-        this.setState({ characters: data, selectedCharacter: data[0] })
+        this.setState({ characters: data, filteredCharacters: data, selectedCharacter: data[0] })
       }
     }
     request.send()
@@ -36,7 +58,8 @@ class CharactersContainer extends React.Component {
     return(
       <div>
         <h2>Dave and Alice's Great Harry Potter Page</h2>
-        <CharacterSelector characters={this.state.characters} setSelectedCharacter={ this.setSelectedCharacter.bind(this) }/> 
+        <CharacterSelectorFilter setFilteredCategory={ this.setFilteredCategory.bind(this) } createCharacterList={this.createCharacterList.bind(this)}/>
+        <CharacterSelector characters={this.createCharacterList(this.state.characters)} setSelectedCharacter={ this.setSelectedCharacter.bind(this) }/> 
         <CharacterDetail selectedCharacter={this.state.selectedCharacter} />
       </div>
       )
