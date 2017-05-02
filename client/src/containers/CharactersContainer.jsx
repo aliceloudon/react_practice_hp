@@ -1,5 +1,6 @@
 import React from 'react'
 import CharacterSelector from '../components/CharacterSelector'
+import CharacterDetail from '../components/CharacterDetail'
 
 class CharactersContainer extends React.Component {
 
@@ -36,6 +37,7 @@ class CharactersContainer extends React.Component {
       <div>
         <h2>Dave and Alice's Great Harry Potter Page</h2>
         <CharacterSelector characters={this.state.characters} setSelectedCharacter={ this.setSelectedCharacter.bind(this) }/> 
+        <CharacterDetail selectedCharacter={this.state.selectedCharacter} />
       </div>
       )
 
