@@ -4,6 +4,7 @@ class CharacterSelectorFilter extends React.Component {
 
   handleChange(event) {
     this.props.setFilteredCategory(event.target.value)
+    this.props.setSelectedIndex(-1)
   }
 
   render() {

@@ -11,8 +11,13 @@ class CharactersContainer extends React.Component {
       characters: [],
       // filteredCharacters: [],
       selectedCharacter: null,
-      filteredCategory: ''
+      filteredCategory: '',
+      selectedIndex: -1
     }
+  }
+
+  setSelectedIndex(index) {
+    this.setState({ selectedIndex: index })
   }
 
   setFilteredCategory(house) {
@@ -27,11 +32,6 @@ class CharactersContainer extends React.Component {
     return data.filter((character) => {
       return (character.house === this.state.filteredCategory)
     })
-
-    // const filteredCharacters = this.state.characters.filter((character) => {
-    //   return (character.house === this.state.filteredCategory)
-    // })
-    // this.setState({ filteredCharacters: filteredCharacters })
   }
 
   componentDidMount() {
@@ -58,8 +58,8 @@ class CharactersContainer extends React.Component {
     return(
       <div>
         <h2>Dave and Alice's Great Harry Potter Page</h2>
-        <CharacterSelectorFilter setFilteredCategory={ this.setFilteredCategory.bind(this) } createCharacterList={this.createCharacterList.bind(this)}/>
-        <CharacterSelector characters={this.createCharacterList(this.state.characters)} setSelectedCharacter={ this.setSelectedCharacter.bind(this) }/> 
+        <CharacterSelectorFilter setFilteredCategory={ this.setFilteredCategory.bind(this) } createCharacterList={this.createCharacterList.bind(this)} setSelectedIndex={ this.setSelectedIndex.bind(this) }/>
+        <CharacterSelector characters={this.createCharacterList(this.state.characters)} setSelectedCharacter={ this.setSelectedCharacter.bind(this)}  setSelectedIndex={ this.setSelectedIndex.bind(this) } selectedIndex={ this.state.selectedIndex } /> 
         <CharacterDetail selectedCharacter={this.state.selectedCharacter} />
       </div>
       )

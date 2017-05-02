@@ -4,14 +4,11 @@ class CharacterSelector extends React.Component {
 
   constructor(props){
     super(props)
-    this.state = {
-      selectedIndex: undefined
-    }
   }
 
   handleChange(event) {
-    this.setState({ selectedIndex: event.target.value })
     this.props.setSelectedCharacter(this.props.characters[event.target.value])
+    this.props.setSelectedIndex(event.target.value)
   }
 
   render() {
@@ -21,7 +18,8 @@ class CharacterSelector extends React.Component {
     })
 
     return(
-      <select id='characters' value={this.state.selectedIndex} onChange={this.handleChange.bind(this)}>
+      <select id='characters' value={this.props.selectedIndex} onChange={this.handleChange.bind(this)}>
+        <option value='-1' disabled>Select a character</option>
         { options }
       </select>
     )
