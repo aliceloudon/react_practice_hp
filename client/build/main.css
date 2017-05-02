@@ -1,0 +1,15 @@
+body {
+  color: goldenrod;
+}
+
+h3, p {
+  padding: 1px;
+  background-color: blue;
+  width: 10%;
+}
+
+h2 {
+  padding: 5px;
+  background-color: blue;
+  width: 20%;
+}

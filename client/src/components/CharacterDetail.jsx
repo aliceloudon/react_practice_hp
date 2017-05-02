@@ -4,6 +4,9 @@ const CharacterDetail = (props) => {
   if ( !props.selectedCharacter ){
     return null
   }
+
+  props.setBackground(props.selectedCharacter)
+
   return (
     <div>
       <h3>
