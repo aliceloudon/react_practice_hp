@@ -9,6 +9,11 @@ class CharacterSelector extends React.Component {
     }
   }
 
+  handleChange(event) {
+    this.setState({ selectedIndex: event.target.value })
+    this.props.setSelectedCharacter(this.props.characters[event.target.value])
+  }
+
   render() {
 
     const options = this.props.characters.map( (character, index) => {
@@ -16,7 +21,7 @@ class CharacterSelector extends React.Component {
     })
 
     return(
-      <select id='characters' value={this.state.selectedIndex}>
+      <select id='characters' value={this.state.selectedIndex} onChange={this.handleChange.bind(this)}>
         { options }
       </select>
     )

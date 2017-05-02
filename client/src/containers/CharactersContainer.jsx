@@ -26,14 +26,16 @@ class CharactersContainer extends React.Component {
     request.send()
   }
 
+  setSelectedCharacter(character) {
+    this.setState({ selectedCharacter: character })
+  }
+
 
   render() {
-
     return(
       <div>
         <h2>Dave and Alice's Great Harry Potter Page</h2>
-        <CharacterSelector characters={this.state.characters}/>
-        
+        <CharacterSelector characters={this.state.characters} setSelectedCharacter={ this.setSelectedCharacter.bind(this) }/> 
       </div>
       )
 
