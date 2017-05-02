@@ -5,9 +5,17 @@ const CharacterDetail = (props) => {
     return null
   }
   return (
-    <h3>
-      { props.selectedCharacter.name }
-    </h3>
+    <div>
+      <h3>
+        { props.selectedCharacter.name }
+      </h3>
+      <p>
+        House: { props.selectedCharacter.house }
+      </p>
+      <p>
+        Wand Length: { props.selectedCharacter.wand.length }
+      </p>
+    </div>
   )
 }
 
