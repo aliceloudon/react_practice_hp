@@ -1,6 +1,6 @@
 import React from 'react'
 
-class CharactersContainer {
+class CharactersContainer extends React.Component {
 
   constructor(props) {
     super(props)
@@ -17,9 +17,10 @@ class CharactersContainer {
 
     request.onload = () => {
       if (request.status === 200) {
-      const jsonString = request.responseText
-      const data = JSON.parse(jsonString)
-      this.setState({ characters: data, selectedCharacter: data[0] })
+        console.log(request.responseText)
+        const jsonString = request.responseText
+        const data = JSON.parse(jsonString)
+        this.setState({ characters: data, selectedCharacter: data[0] })
       }
     }
     request.send()
@@ -34,7 +35,7 @@ class CharactersContainer {
         <CharacterSelector />
         <CharacterDetail />
       </div>
-    )
+      )
 
   }
 
