@@ -1,4 +1,5 @@
 import React from 'react'
+import CharacterSelector from '../components/CharacterSelector'
 
 class CharactersContainer extends React.Component {
 
@@ -17,7 +18,6 @@ class CharactersContainer extends React.Component {
 
     request.onload = () => {
       if (request.status === 200) {
-        console.log(request.responseText)
         const jsonString = request.responseText
         const data = JSON.parse(jsonString)
         this.setState({ characters: data, selectedCharacter: data[0] })
@@ -32,8 +32,8 @@ class CharactersContainer extends React.Component {
     return(
       <div>
         <h2>Dave and Alice's Great Harry Potter Page</h2>
-        <CharacterSelector />
-        <CharacterDetail />
+        <CharacterSelector characters={this.state.characters}/>
+        
       </div>
       )
 
